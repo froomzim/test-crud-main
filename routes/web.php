@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductController;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +24,6 @@ Route::controller(HomeController::class)->group(function() {
 });
 
 
-Route::resource('produtos', ProductsController::class);
+Route::resource('produtos', ProductController::class);
 Route::resource('categorias', CategoryController::class);
+
