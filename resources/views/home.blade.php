@@ -15,16 +15,16 @@
                     @endif
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="d-flex flex-row col-6">
 
                             <a href="{{ route('produtos.index') }}" class="btn btn-primary">
-                                <i class="bi bi-plus-lg"></i> Cadastro de Produtos
+                                <i class="bi bi-bag"></i> Cadastro de Produtos
                             </a>
                         </div>
-                        <div class="col-6">
+                        <div class="d-flex flex-row-reverse col-6">
 
                             <a href="{{ route('categorias.index') }}" class="btn btn-primary">
-                                <i class="bi bi-plus-lg"></i> Cadastro de Categorias
+                                <i class="bi bi-tags"></i> Cadastro de Categorias
                             </a>
                         </div>
                     </div>
