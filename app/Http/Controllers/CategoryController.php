@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::get();
-        return view('category.index',[
+        return view('category.index', [
             'categories' => $categories,
         ]);
     }
@@ -39,7 +39,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $category = Category::create($request->all());
-        return redirect()->route('categories.index');
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -61,8 +61,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id) ;
-        return response()->json($category) ;
+        $category = Category::find($id);
+        return response()->json($category);
     }
 
     /**
@@ -74,9 +74,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id)->update($request->all());
-        return redirect()->route('categories.index');
+        try {
+            $category = Category::find($id)->update($request->all());
+        } catch (\Throwable $th) {
+            return redirect()->route('categorias.index')->with('error', 'Categoria não pode ser atualizada');
+        }
 
+        return redirect()->route('categorias.index')->with('success', 'Categoria atualizada com sucesso');;
     }
 
     /**
@@ -87,7 +91,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::destroy($id);
-        return redirect()->route('categories.index');
+
+
+        try {
+            $category = Category::destroy($id);
+        } catch (\Throwable $th) {
+            return redirect()->route('categorias.index')->with('error', 'Categoria não pode ser deletada, verifique se a mesma não está sendo utilizada');
+        }
+
+        return redirect()->route('categorias.index')->with('success', 'Categoria deletada com sucesso');
     }
 }
